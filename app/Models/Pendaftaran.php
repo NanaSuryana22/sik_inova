@@ -22,4 +22,11 @@ class Pendaftaran extends Model
     public function pasien() {
         return $this->belongsTo('App\Models\Pasien', 'pasien_id');
     }
+
+    public function nama_pasien() {
+       $no_pasien = $this->no_pasien;
+       $nama_pasien = $this->pasien->nama;
+       $data = "$no_pasien - $nama_pasien";
+       return $data;
+    }
 }

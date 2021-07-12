@@ -71,7 +71,7 @@
                                     onclick="return confirm('Yakin ingin menghapus data pasien Ini ?')">
                                     <i class="fa fa-trash" title="Hapus"></i>
                                 </button>
-                                <a href="{{ route('pasien.index') }}" class="pull-right btn btn-primary btn-md">
+                                <a href="{{ url()->previous() }}" class="pull-right btn btn-primary btn-md">
                                     <i class="fa fa-mail-reply" title="Kembali"></i>
                                 </a>
                             </form>

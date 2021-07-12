@@ -16,4 +16,8 @@ class Obat extends Model
         'description',
         'harga'
     ];
+
+    public function reseps() {
+        return $this->hasMany('App\Models\Resep', 'pengobatan_id');
+    }
 }

@@ -16,4 +16,8 @@ class Tindakan extends Model
         'description',
         'harga'
     ];
+
+    public function pengobatan_details() {
+        return $this->hasMany('App\Models\PengobatanDetail', 'tindakan_id');
+    }
 }

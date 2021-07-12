@@ -24,7 +24,7 @@
                                     <hr />
                                 </div>
                                 <dt class="col-sm-4">Nama Pasien</dt>
-                                <dd class="col-sm-8">{{ $pendaftaran->pasien->nama }} - {{ $umur }} Tahun</dd>
+                                <dd class="col-sm-8"><a href="{{ route('pasien.show', $pendaftaran->pasien->id) }}">{{ $pendaftaran->pasien->nama }}</a> - {{ $umur }} Tahun</dd>
                                 <div class="col-md-12">
                                     <hr />
                                 </div>

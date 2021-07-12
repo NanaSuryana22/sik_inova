@@ -75,11 +75,11 @@ $user = Auth::user();
                 <li class="@yield('pendaftaran')">
                     <a href="{{ route('pendaftaran.index') }}">Pendaftaran Pasien</a>
                 </li>
-                <li class="@yield('tindakan')">
-                    <a href="#">Tindakan & Obat</a>
+                <li class="@yield('pengobatan')">
+                    <a href="{{ route('pengobatan.index') }}">Pengobatan / Pemeriksaan</a>
                 </li>
                 <li class="@yield('pembayaran')">
-                    <a href="#">Pembayaran Tagihan</a>
+                    <a href="{{ route('pembayaran.index') }}">Pembayaran Tagihan</a>
                 </li>
             </ul>
         </li>

@@ -45,6 +45,9 @@
     <!-- Bootstrap DatePicker Css -->
     <link href="{{ asset('template/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet" />
 
+    <!-- JQuery DataTable Css -->
+    <link href="{{ asset('template/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+
     @yield('styles')
 </head>
 
@@ -133,9 +136,21 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{ asset('template/plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>
 
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{{ asset('template/plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('template/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('template/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/jquery-datatable/extensions/export/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/jquery-datatable/extensions/export/jszip.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('template/plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
+
     <!-- Custom Js -->
     <script src="{{ asset('template/js/admin.js') }}"></script>
     <script src="{{ asset('template/js/pages/index.js') }}"></script>
+    <script src="{{ asset('template/js/pages/tables/jquery-datatable.js') }}"></script>
 
     <!-- Demo Js -->
     <script src="{{ asset('template/js/demo.js') }}"></script>

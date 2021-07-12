@@ -7,7 +7,9 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>Tambah Data Pendaftaran</h2>
+                <h2>Tambah Data Pendaftaran</h2><br />
+                <button type="button" class="btn btn-info waves-effect m-r-20" data-toggle="modal"
+                    data-target="#defaultModal">BUAT DATA PASIEN</button>
             </div>
             <div class="body">
                 <form id="form_validation" action="{{ route('pendaftaran.store') }}" method="POST">
@@ -15,9 +17,11 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <label class="form-label" for="no_pasien">No. Pendaftaran</label>
-                            <input type="text" class="form-control @error('no_pasien') is-invalid @enderror" name="no_pasien"
-                                autocomplete="off" required value="{{ $format_pendaftaran }}{{ $pendaftaran_terakhir }}" disabled>
-                            <input type="hidden" name="no_pasien" value="{{ $format_pendaftaran }}{{ $pendaftaran_terakhir }}">
+                            <input type="text" class="form-control @error('no_pasien') is-invalid @enderror"
+                                name="no_pasien" autocomplete="off" required
+                                value="{{ $format_pendaftaran }}{{ $pendaftaran_terakhir }}" disabled>
+                            <input type="hidden" name="no_pasien"
+                                value="{{ $format_pendaftaran }}{{ $pendaftaran_terakhir }}">
                         </div>
                         @if($errors->has('no_pasien'))
                         <span class="invalid-feedback" role="alert">
@@ -36,8 +40,8 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <label class="form-label" for="tanggal_daftar">Tanggal Daftar</label><br /><br />
-                            <input type="date" class="form-control @error('tanggal_daftar') is-invalid @enderror" name="tanggal_daftar"
-                                autocomplete="off" required value="{{ old('tanggal_daftar') }}">
+                            <input type="date" class="form-control @error('tanggal_daftar') is-invalid @enderror"
+                                name="tanggal_daftar" autocomplete="off" required value="{{ old('tanggal_daftar') }}">
                         </div>
                         @if($errors->has('tanggal_daftar'))
                         <span class="invalid-feedback" role="alert">
@@ -66,12 +70,13 @@
         </div>
     </div>
 </div>
+@include('pendaftaran.tambah_pasien')
 @endsection
 
 @section('styles')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 @endsection
 
 @push('scripts')
@@ -95,5 +100,6 @@
             cache: true
         }
     });
+
 </script>
 @endpush

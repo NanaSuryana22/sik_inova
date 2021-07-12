@@ -7,7 +7,9 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>Ubah Data Pendaftaran</h2>
+                <h2>Ubah Data Pendaftaran</h2><br />
+                <button type="button" class="btn btn-info waves-effect m-r-20" data-toggle="modal"
+                    data-target="#defaultModal">BUAT DATA PASIEN</button>
             </div>
             <div class="body">
                 <form id="form_validation" action="{{ route('pendaftaran.update', $pendaftaran->id) }}" method="POST">
@@ -66,6 +68,7 @@
         </div>
     </div>
 </div>
+@include('pendaftaran.tambah_pasien')
 @endsection
 
 @section('styles')
