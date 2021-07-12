@@ -9,6 +9,7 @@ use App\Models\Pendaftaran;
 use Illuminate\Support\Facades\DB;
 use App\Models\PengobatanDetail;
 use App\Models\Resep;
+use Carbon\Carbon;
 
 class PembayaranController extends Controller
 {
@@ -87,7 +88,17 @@ class PembayaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pengobatan = Pengobatan::find($id);
+        $pengobatan->status_pembayaran = 'Lunas';
+        $pengobatan->tanggal_pembayaran = Carbon::now();
+        $pengobatan->save();
+
+        $pendaftaran = Pendaftaran::find($pengobatan->pendaftaran_id);
+        $pendaftaran->status = 'Selesai';
+        $pendaftaran->save();
+
+        Session::flash("notice", "Pembayaran berhasil dilakukan.");
+        return redirect()->route("pembayaran.show", $pengobatan);
     }
 
     /**

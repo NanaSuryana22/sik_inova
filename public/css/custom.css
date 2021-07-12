@@ -6,22 +6,55 @@
     font-size: .875rem;
     color: #dc3545;
 }
+
 .btn-show-margin {
     margin-left: 12pxs;
 }
-.btn-action{
+
+.btn-action {
     text-decoration: none;
     font-size: 12px;
     color: crimson;
     border-style: none;
 }
+
 .btn-action:hover {
     background-color: "grey";
     text-decoration: none;
 }
+
 .ul-style {
     margin-left: 15px;
     margin-top: 15px;
     margin-right: none;
     margin-bottom: 14px;
+}
+
+.btn .btn-action-pembayaran {
+    text-decoration: none;
+    font-size: 5px;
+    color: crimson;
+    border-style: none;
+}
+
+a.btn-action-pembayran:hover {
+    background-color: "grey";
+    text-decoration: none;
+}
+
+fieldset {
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    font-family: Arial, Helvetica;
+    margin-bottom: 12px;
+}
+
+legend {
+    background: #BFD48C;
+    /* Hijau */
+    color: #FFFFFF;
+    /* Putih */
+    margin-bottom: 10px;
+    padding: 0.5em 1em;
+    font-size: 16px;
 }

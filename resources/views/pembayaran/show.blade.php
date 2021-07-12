@@ -132,20 +132,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="{{ route('pengobatan.destroy', $pengobatan->id) }}" method="post">
-                                <a href="{{ route('pengobatan.edit',$pengobatan->id) }}" class="btn btn-warning btn-md">
-                                    <i class="fa fa-pencil" title="Edit"></i>
-                                </a>
-                                {{-- {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger btn-md btn-show-margin"
-                                    onclick="return confirm('Yakin ingin menghapus User Ini ?')">
-                                    <i class="fa fa-trash" title="Hapus"></i>
-                                </button> --}}
-                                <a href="{{ route('pembayaran.index') }}" class="pull-right btn btn-primary btn-md">
-                                    <i class="fa fa-mail-reply" title="Kembali"></i>
-                                </a>
-                            </form>
+                            @if ($pengobatan->status_pembayaran == 'Ditangguhkan')
+                                <button type="button" class="btn btn-success btn-md btn-show-margin" data-toggle="modal" data-target="#defaultModal">
+                                    <i class="fa fa-check" title="Ubah Status Pembayaran"></i>
+                                </button>
+                                @include('pembayaran.ubah_status_pembayaran')
+                            @endif
+                            <button onclick="window.location.href='{{ route('pembayaran.index') }}'" class="pull-right btn btn-primary btn-md"><i class="fa fa-mail-reply" title="Kembali"></i></button>
                         </div>
                     </div>
                 </div>
