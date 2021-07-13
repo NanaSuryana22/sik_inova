@@ -150,7 +150,7 @@ class EmployeeController extends Controller
 
         $pegawai->user_id = $request->user_id;
         $pegawai->id_card = $request->alamat;
-        $pegawai->wilayah_id = $request->wilayah_id;
+        $pegawai->wilayah_id = Kota::find($request->kota_id)->id_wilayah;
         $pegawai->kota_id = $request->kota_id;
         $pegawai->jenis_kelamin = $request->jenis_kelamin;
         $pegawai->pendidikan_terakhir = $request->pendidikan_terakhir;
