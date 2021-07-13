@@ -64,7 +64,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\role', 'role_id');
     }
 
-    public function pegawai() {
+    public function employee() {
         return $this->hasOne('App\Models\Employee', 'user_id');
     }
 }

@@ -1,5 +1,5 @@
 @extends('layout\app')
-@section('title', 'Tambah Data Pegawai')
+@section('title', 'Edit Data Pegawai')
 @section('master', 'active')
 @section('pegawai', 'active')
 @section('content')
@@ -7,13 +7,13 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>Tambah Data Pegawai</h2><br />
+                <h2>Edit Data Pegawai</h2><br />
                 <button type="button" class="btn btn-info waves-effect m-r-20" data-toggle="modal"
                     data-target="#defaultModal">BUAT DATA USER</button>
             </div>
             <div class="body">
-                <form id="form_validation" action="{{ route('pegawai.store') }}" method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+                <form id="form_validation" action="{{ route('pegawai.update', $employee->id) }}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }} {{ method_field('PUT') }}
                     <div class="form-group form-float">
                         <select class="livesearch form-control p-3" name="user_id"></select>
                         @if($errors->has('user_id'))
@@ -26,7 +26,7 @@
                         <div class="form-line">
                             <label class="form-label" for="id_card">Nomor Kartu Identitas</label>
                             <input type="text" class="form-control @error('id_card') is-invalid @enderror"
-                                name="id_card" autocomplete="off" required value="{{ old('id_card') }}">
+                                name="id_card" autocomplete="off" required value="{{ $employee->id_card }}">
                         </div>
                         @if($errors->has('id_card'))
                         <span class="invalid-feedback" role="alert">
@@ -39,7 +39,7 @@
                             <label class="form-label" for="alamat">Alamat</label>
                             <textarea name="alamat" cols="30" rows="5"
                                 class="form-control no-resize @error('alamat') is-invalid @enderror"
-                                required>{{ old('alamat') }}</textarea>
+                                required>{{ $employee->alamat }}</textarea>
                         </div>
                         @if($errors->has('alamat'))
                         <span class="invalid-feedback" role="alert">
@@ -58,8 +58,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label><br /><br />
-                            <input type="radio" name="jenis_kelamin" value="Laki-laki" class="with-gap" id="laki_laki"
-                                checked>
+                            <input type="radio" name="jenis_kelamin" value="Laki-laki" class="with-gap" id="laki_laki">
                             <label for="laki_laki">Laki-Laki</label>
                             <input type="radio" name="jenis_kelamin" value="Perempuan" class="with-gap" id="perempuan">
                             <label for="perempuan" class="m-l-20">Perempuan</label>
@@ -76,7 +75,7 @@
                             <select name="pendidikan_terakhir"
                                 class="form-control @error('pendidikan_terakhir') is-invalid @enderror show-tick"
                                 required value="{{ old('pendidikan_terakhir') }}">
-                                <option value="">Pilih Pendidikan Terakhir</option>
+                                <option value="{{ $employee->pendidikan_terakhir }}">Pilih Pendidikan Terakhir</option>
                                 <option value="SMA/K">SMA/K</option>
                                 <option value="Diploma 1">Diploma 1</option>
                                 <option value="Diploma 2">Diploma 2</option>
@@ -95,7 +94,7 @@
                     <div class="form-group form-float">
                         <label for="photo">Upload Foto</label>
                         <input type="file" class="form-control form-control-sm @error('photo') is-invalid @enderror"
-                            name="photo" id="photo" value="{{ old('photo') }}"><br />
+                            name="photo" id="photo" value="{{ $employee->photo }}"><br />
                         @if($errors->has('photo'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{$errors->first('photo') }}</strong>

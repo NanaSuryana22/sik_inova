@@ -78,9 +78,9 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmployeeRequest $request)
+    public function store(Request $request)
     {
-        $image = $request->file('image');
+        $image = $request->file('photo');
         $dp_image = 'photo_pegawai/';
         $image_name = Str::random(6).'_'.$image->getClientOriginalName();
         $image->move($dp_image, $image_name);
@@ -89,11 +89,11 @@ class EmployeeController extends Controller
         $pegawai->user_id = $request->user_id;
         $pegawai->id_card = $request->id_card;
         $pegawai->alamat = $request->alamat;
-        $pegawai->wilayah_id = $request->wilayah_id;
+        $pegawai->wilayah_id = Kota::find($request->kota_id)->id_wilayah;
         $pegawai->kota_id = $request->kota_id;
         $pegawai->jenis_kelamin = $request->jenis_kelamin;
         $pegawai->pendidikan_terakhir = $request->pendidikan_terakhir;
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('photo')) {
             $pegawai->photo = $dp_image . $image_name;
         }
         $pegawai->save();
@@ -108,8 +108,9 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
+        $employee = Employee::find($id);
         return view('pegawai.show')->with('employee', $employee);
     }
 
@@ -119,9 +120,11 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        return view('pegawai.edit', compact($employee));
+        $employee = Employee::find($id);
+        $roles = Role::all();
+        return view('pegawai.edit')->with('employee', $employee)->with('roles', $roles);
     }
 
     /**
@@ -131,14 +134,14 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(EmployeeRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $pegawai = Employee::find($id);
-        if (empty($request->file('image'))) {
+        if (empty($request->file('photo'))) {
             $image_n = $pegawai->photo;
         }
         else {
-            $image = $request->file('image');
+            $image = $request->file('photo');
             $dp_image = 'photo_pegawai/';
             $image_name = Str::random(6).'_'.$image->getClientOriginalName();
             $image->move($dp_image, $image_name);
