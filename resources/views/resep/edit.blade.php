@@ -1,5 +1,5 @@
 @extends('layout\app')
-@section('title', 'Halaman Tambah Data Resep')
+@section('title', 'Edit Data Resep')
 @section('transaksi', 'active')
 @section('pengobatan', 'active')
 @section('content')
@@ -7,7 +7,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>Tambah Data Data Resep</h2>
+                <h2>Edit Data Resep</h2>
             </div>
             <div class="body">
                 <form id="form_validation" action="{{ route('resep.update', $resep->id) }}" method="POST">

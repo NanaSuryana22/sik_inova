@@ -64,7 +64,7 @@ class PembayaranController extends Controller
         $pengobatan = Pengobatan::find($id);
         $pengobatan_details = PengobatanDetail::where('pengobatan_id', $pengobatan->id)->paginate(10);
         $reseps = Resep::where('pengobatan_id', $pengobatan->id)->paginate(10);
-        $total_biaya_resep = DB::select('SELECT (SELECT SUM(a.harga_obat*a.jumlah_obat) FROM resep a, pengobatan b WHERE a.pengobatan_id = '.$pengobatan->id.') as total_biaya_obat');
+        $total_biaya_resep = DB::select('SELECT (SELECT SUM(a.harga_obat*a.jumlah_obat) from resep a WHERE a.pengobatan_id = '.$pengobatan->id.') AS total_biaya_obat');
         return view('pembayaran.show')->with('pengobatan', $pengobatan)->with('pengobatan_details', $pengobatan_details)->with('reseps', $reseps)->with('total_biaya_resep', $total_biaya_resep);
     }
 

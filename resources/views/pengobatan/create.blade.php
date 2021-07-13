@@ -24,7 +24,7 @@
                     </div>
                     <button class="btn btn-primary waves-effect" type="submit">SIMPAN</button>
                     <button class="btn btn-warning waves-effect" type="reset">RESET</button>
-                    <button type="button" class="btn btn-link waves-effect pull-right" data-dismiss="modal">BATAL</button>
+                    <a href="{{ route('pengobatan.index') }}" class="btn btn-info waves-effect pull-right">KEMBALI</a>
                 </form>
             </div>
         </div>

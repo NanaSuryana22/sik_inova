@@ -17,29 +17,18 @@
                     <td class="th-font" data-title="Nama">{{ $data->name }}</td>
                     <td class="th-font" data-title="Deskripsi">{{ $data->description}}</td>
                     <td class="th-font" data-title="Aksi">
-                        <div class="btn-group">
-                            <button type="button" class="btn bg-cyan dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                Aksi <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <form action="{{ route('kota.destroy', $data->id) }}" method="post">
-                                    {{-- <li class="ul-style"><a href="{{ route('kota.show',$data->id) }}"
-                                            class="btn-action">Lihat Detail</li> --}}
-                                    {{-- <li role="separator" class="divider"></li> --}}
-                                    <li class="ul-style"><a href="{{ route('kota.edit',$data->id) }}"
-                                            class="btn-action">Edit</a></li>
-                                    <li>
-                                    <li role="separator" class="divider"></li>
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <li class="ul-style">
-                                        <button class="btn-action" type="submit"
-                                            onclick="return confirm('Yakin ingin menghapus Kota Ini ?')">Hapus</button>
-                                    </li>
-                                </form>
-                            </ul>
-                        </div>
+                        <form action="{{ route('kota.destroy', $data->id) }}" method="POST">
+                            <div class="icon-button-demo">
+                                <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float" onclick="window.location.href='{{ route('kota.edit', $data->id) }}'">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float" onclick="return confirm('Yakin ingin menghapus data kota Ini ?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

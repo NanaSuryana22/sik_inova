@@ -88,7 +88,13 @@
     <!-- #Top Bar -->
     <section>
         <!-- Left Sidebar -->
-        @include('layout.leftbar')
+        @if(Auth::user()->role->name == 'Admin')
+            @include('layout.leftbar')
+        @elseif (Auth::user()->role->name == 'Resepsionis' || Auth::user()->role->name == 'Apoteker')
+            @include('layout.leftbar_resepsionis')
+        @elseif (Auth::user()->role->name == 'Dokter')
+            @include('layout.leftbar_dokter')
+        @endif
         <!-- #END# Left Sidebar -->
         <!-- Right Sidebar -->
         @include('layout.rightbar')

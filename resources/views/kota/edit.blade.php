@@ -1,5 +1,5 @@
 @extends('layout\app')
-@section('title', 'Halaman Tambah Data Kota')
+@section('title', 'Halaman Ubah Data Kota')
 @section('master', 'active')
 @section('wilayah', 'active')
 @section('content')

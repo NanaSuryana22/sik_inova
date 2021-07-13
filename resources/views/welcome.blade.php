@@ -91,8 +91,8 @@
 
                     </form>
                     <div class="copy-right text-center">
-                        <p>© 2021 Sistem Informasi Klinik | Develop by
-                            <a href="http://nanasuryana.rf.gd/" target="_blank">Nana Suryana</a></p>
+                        <p>© 2021 Sistem Informasi Klinik</p>
+                        <p>Develop by <a href="http://nanasuryana.rf.gd/" target="_blank">Nana Suryana</a></p>
                     </div>
                 </div>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PendaftaranController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,10 @@ Route::resource('pengobatan', 'PengobatanController');
 Route::resource('pengobatan_detail', 'PengobatanDetailController');
 Route::resource('resep', 'ResepController');
 Route::resource('pembayaran', 'PembayaranController');
+
+//route untuk select2
+Route::get('search-user', [App\Http\Controllers\EmployeeController::class,'selectUser']);
+Route::get('search-kota', [App\Http\Controllers\EmployeeController::class,'selectKota']);
 Route::get('ajax-autocomplete-search', [PendaftaranController::class,'selectSearch']);
 Route::get('search-pasien-pendaftaran', [App\Http\Controllers\PengobatanController::class,'selectPendaftaran']);
 Route::get('search-tindakan', [App\Http\Controllers\PengobatanDetailController::class,'selectTindakan']);

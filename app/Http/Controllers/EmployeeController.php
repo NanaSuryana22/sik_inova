@@ -9,6 +9,8 @@ use App\Models\Wilayah;
 use App\Models\Kota;
 use Illuminate\Http\Request;
 use App\HTTP\Requests\EmployeeRequest;
+use Illuminate\Support\Str;
+use Session;
 
 class EmployeeController extends Controller
 {
@@ -38,11 +40,36 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $users    = User::all();
-        $roles    = Role::all();
-        $wilayahs = Wilayah::all();
-        $cities   = Kota::all();
-        return view('pegawai.create')->with('roles', $roles)->with('users', $users)->with('wilayahs', $wilayahs)->with('cities', $cities);
+        $roles = Role::all();
+        return view('pegawai.create')->with('roles', $roles);
+    }
+
+    public function selectUser(Request $request)
+    {
+        $users = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $users = User::select("id", "name")
+                            ->where('name', 'LIKE', "%$search%")
+                            ->orWhere('email', 'LIKE', "%$search%")
+                            ->get();
+        }
+        return response()->json($users);
+    }
+
+    public function selectKota(Request $request)
+    {
+        $cities = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $cities = Kota::select("id", "name")
+                            ->where('name', 'LIKE', "%$search%")
+                            ->orWhere('description', 'LIKE', "%$search%")
+                            ->get();
+        }
+        return response()->json($cities);
     }
 
     /**
@@ -53,7 +80,26 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
-        //
+        $image = $request->file('image');
+        $dp_image = 'photo_pegawai/';
+        $image_name = Str::random(6).'_'.$image->getClientOriginalName();
+        $image->move($dp_image, $image_name);
+
+        $pegawai = new Employee;
+        $pegawai->user_id = $request->user_id;
+        $pegawai->id_card = $request->id_card;
+        $pegawai->alamat = $request->alamat;
+        $pegawai->wilayah_id = $request->wilayah_id;
+        $pegawai->kota_id = $request->kota_id;
+        $pegawai->jenis_kelamin = $request->jenis_kelamin;
+        $pegawai->pendidikan_terakhir = $request->pendidikan_terakhir;
+        if ($request->hasFile('image')) {
+            $pegawai->photo = $dp_image . $image_name;
+        }
+        $pegawai->save();
+
+        Session::flash("notice", "Pegawai baru berhasil ditambahkan.");
+        return redirect()->route("pegawai.show", $pegawai);
     }
 
     /**
@@ -64,7 +110,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return view('pegawai.show')->with('employee', $employee);
     }
 
     /**
@@ -75,7 +121,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('pegawai.edit', compact($employee));
     }
 
     /**
@@ -85,9 +131,31 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeRequest $request, $id)
     {
-        //
+        $pegawai = Employee::find($id);
+        if (empty($request->file('image'))) {
+            $image_n = $pegawai->photo;
+        }
+        else {
+            $image = $request->file('image');
+            $dp_image = 'photo_pegawai/';
+            $image_name = Str::random(6).'_'.$image->getClientOriginalName();
+            $image->move($dp_image, $image_name);
+            $image_n = $dp_image . $image_name;
+        }
+
+        $pegawai->user_id = $request->user_id;
+        $pegawai->id_card = $request->alamat;
+        $pegawai->wilayah_id = $request->wilayah_id;
+        $pegawai->kota_id = $request->kota_id;
+        $pegawai->jenis_kelamin = $request->jenis_kelamin;
+        $pegawai->pendidikan_terakhir = $request->pendidikan_terakhir;
+        $pegawai->photo = $image_n;
+        $pegawai->save();
+
+        Session::flash("notice", "Pegawai terpilih berhasil diubah.");
+        return redirect()->route("pegawai.show", $pegawai);
     }
 
     /**
@@ -96,14 +164,10 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
-    }
-
-    public function pegawai_list($role_id)
-    {
-        $users = User::where('role_id', $role_id)->pluck('nama_user', 'id');
-        return response()->json($users);
+        Employee::destroy($id);
+        Session::flash("notice", "Pegawai terpilih berhasil dihapus");
+        return redirect()->route("pegawai.index");
     }
 }

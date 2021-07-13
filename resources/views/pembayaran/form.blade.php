@@ -1,5 +1,5 @@
 <?php
-$total_biaya_resep = DB::select('SELECT (SELECT SUM(a.harga_obat*a.jumlah_obat) FROM resep a, pengobatan b WHERE a.pengobatan_id = '.$data->id.') as total_biaya_obat');
+$total_biaya_resep = DB::select('SELECT (SELECT SUM(a.harga_obat*a.jumlah_obat) from resep a WHERE a.pengobatan_id = '.$data->id.') AS total_biaya_obat');
 ?>
 <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

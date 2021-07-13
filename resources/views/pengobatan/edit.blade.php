@@ -8,7 +8,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>Tambah Data Hak Akses</h2>
+                <h2>Edit Data Pengobatan</h2>
             </div>
             <div class="body">
                 <form id="form_validation" action="{{ route('pengobatan.store') }}" method="POST">
@@ -23,7 +23,7 @@
                     </div>
                     <button class="btn btn-primary waves-effect" type="submit">SIMPAN</button>
                     <button class="btn btn-warning waves-effect" type="reset">RESET</button>
-                    <button type="button" class="btn btn-link waves-effect pull-right" data-dismiss="modal">BATAL</button>
+                    <a href="{{ route('pengobatan.index') }}" class="btn btn-info waves-effect pull-right">KEMBALI</a>
                 </form>
             </div>
         </div>

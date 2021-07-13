@@ -13,7 +13,7 @@
                         <th class="th-font">Aksi</th>
                     @endif
                 </tr>
-            </thead>web
+            </thead>
             <tbody>
                 @foreach($reseps as $no => $data)
                 <tr>
