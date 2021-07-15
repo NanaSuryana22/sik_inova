@@ -37,6 +37,10 @@ Route::resource('pengobatan_detail', 'PengobatanDetailController');
 Route::resource('resep', 'ResepController');
 Route::resource('pembayaran', 'PembayaranController');
 
+//Route untuk chart
+Route::resource('laporan_pendaftaran', 'PendaftaranChartController');
+Route::resource('laporan_data_pasien', 'GrafikDataPasienController');
+
 //route untuk select2
 Route::get('search-user', [App\Http\Controllers\EmployeeController::class,'selectUser']);
 Route::get('search-kota', [App\Http\Controllers\EmployeeController::class,'selectKota']);

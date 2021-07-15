@@ -37,7 +37,7 @@ class PendaftaranController extends Controller
      */
     public function create()
     {
-        $pendaftaran_terakhir = isset(Pendaftaran::latest('id')->first()->id)+1;
+        $pendaftaran_terakhir = isset(Pendaftaran::all()->last()->id)+1;
         $format_pendaftaran = Carbon::now()->format('Ymd');
         return view('pendaftaran.create')->with('pendaftaran_terakhir', $pendaftaran_terakhir)
                                          ->with('format_pendaftaran', $format_pendaftaran);

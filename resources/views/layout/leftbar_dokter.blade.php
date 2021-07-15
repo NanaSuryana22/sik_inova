@@ -55,22 +55,16 @@ $user = Auth::user();
             </ul>
         </li>
         <li class="header">Laporan</li>
-        <li>
-            <a href="javascript:void(0);">
+        <li class="@yield('pendaftaran')">
+            <a href="{{ route('laporan_pendaftaran.index') }}">
                 <i class="material-icons">pie_chart</i>
-                <span>Laporan 1</span>
+                <span>Laporan Pendaftaran</span>
             </a>
         </li>
-        <li>
-            <a href="javascript:void(0);">
+        <li class="@yield('data_pasien')">
+            <a href="{{ route('laporan_data_pasien.index') }}">
                 <i class="material-icons">pie_chart</i>
-                <span>Laporan 2</span>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);">
-                <i class="material-icons">pie_chart</i>
-                <span>Laporan 3</span>
+                <span>Laporan Data Pasien</span>
             </a>
         </li>
       </ul>
